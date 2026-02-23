@@ -27,22 +27,59 @@ From the context file, extract:
 - SSH Username
 - Remote Project Path
 
-### Step 3: Ask What User Wants to Do
+### Step 3: Check SSH Key Auth Status
+
+Before presenting options, check if SSH key auth is already working:
+```bash
+ssh -o ConnectTimeout=5 -o BatchMode=yes -p [port] [user]@[host] "echo SSH_KEY_OK" 2>/dev/null
+```
+- If output contains `SSH_KEY_OK` → key auth is working, proceed normally
+- If it fails → key auth is NOT set up, add "Setup SSH Key Auth" as the first option
+
+### Step 4: Ask What User Wants to Do
 
 Use AskUserQuestion to ask what they want to do:
+- **Setup SSH Key Auth** (only show if key auth is not working) - One-time setup for passwordless SSH
 - **Interactive Shell** - Open an interactive SSH session
 - **Run Command** - Execute a specific command on the server
 - **Check Server Status** - Run diagnostic commands (disk space, memory, processes)
 - **View Logs** - Check recent error/access logs
 - **Restart Services** - Restart web server or PHP
 
-### Step 4: Execute SSH Command
+### Step 5: Execute SSH Command
+
+**For Setup SSH Key Auth:**
+
+This is a one-time setup. After this, all SSH connections will be passwordless.
+
+1. Find the user's local public key:
+   ```bash
+   cat ~/.ssh/id_ed25519.pub 2>/dev/null || cat ~/.ssh/id_rsa.pub 2>/dev/null
+   ```
+
+2. If no key exists, generate one first:
+   ```bash
+   ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)" -N "" -f ~/.ssh/id_ed25519
+   cat ~/.ssh/id_ed25519.pub
+   ```
+
+3. Push the public key to the server in a single command (user enters password ONCE):
+   ```bash
+   ssh -p [port] [user]@[host] "mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo '[PUBLIC_KEY_CONTENT]' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && echo 'SSH key added successfully'"
+   ```
+   IMPORTANT: Replace `[PUBLIC_KEY_CONTENT]` with the actual content of the public key file (the full line starting with `ssh-ed25519` or `ssh-rsa`).
+
+4. Verify it works (should connect without password):
+   ```bash
+   ssh -o BatchMode=yes -p [port] [user]@[host] "echo 'Passwordless SSH is working!'"
+   ```
+
+5. Update `.xcloud/context.md` SSH Key Status to `yes`
 
 **For Interactive Shell:**
 ```bash
 ssh -p [port] [user]@[host]
 ```
-Note: This will prompt for password. The user will interact directly.
 
 **For Run Command:**
 Ask user for the command, then:
@@ -60,7 +97,7 @@ ssh -p [port] [user]@[host] "df -h && free -m && ps aux | head -20"
 ssh -p [port] [user]@[host] "tail -100 ~/logs/error.log"
 ```
 
-### Step 5: Update Context
+### Step 6: Update Context
 
 After any operation, add an entry to the Development Log section in `.xcloud/context.md`:
 ```markdown
@@ -71,9 +108,11 @@ After any operation, add an entry to the Development Log section in `.xcloud/con
 
 ## Important Notes
 
-- Password is prompted by SSH directly - never ask for or store it
+- **SSH Key Auth preferred**: Always check key auth status first. If not set up, proactively suggest it as the first option - it's a one-time setup that eliminates all future password prompts.
+- Never store passwords in any file
 - If connection fails, suggest checking:
   - SSH credentials
-  - Firewall rules
+  - Firewall rules (fail2ban may block IP after failed attempts)
   - Server status
 - For long-running commands, consider using `nohup` or `screen`
+- On Windows, `ssh-copy-id` is NOT available. Use the manual method (push key via SSH command) instead.

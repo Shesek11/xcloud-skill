@@ -58,36 +58,34 @@ When connecting: Your PC proves it has the private key → Server grants access
 ### Step-by-Step:
 1. **Check for existing local key:**
    ```bash
-   ls ~/.ssh/id_ed25519.pub 2>/dev/null || ls ~/.ssh/id_rsa.pub 2>/dev/null
+   cat ~/.ssh/id_ed25519.pub 2>/dev/null || cat ~/.ssh/id_rsa.pub 2>/dev/null
    ```
 
 2. **If no key exists, generate one:**
    ```bash
-   ssh-keygen -t ed25519 -C "your-email@example.com"
-   ```
-   (Accept defaults, optionally set a passphrase)
-
-3. **Display the public key:**
-   ```bash
+   ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)" -N "" -f ~/.ssh/id_ed25519
    cat ~/.ssh/id_ed25519.pub
    ```
 
-4. **Add to server:** The user needs to add this public key to their server's SSH authentication settings. In xCloud control panel, this is typically under:
-   - SSH Access → Public Keys, or
-   - Security → SSH Keys
-
-   They paste the entire public key line (starts with `ssh-ed25519` or `ssh-rsa`).
-
-5. **Test the connection:**
+3. **Push the key to the server automatically** (user enters password ONCE):
    ```bash
-   ssh -p [port] [user]@[host]
+   ssh -p [port] [user]@[host] "mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo '[PUBLIC_KEY_CONTENT]' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && echo 'SSH key added successfully'"
    ```
-   If successful, it should connect without asking for a password.
+   Replace `[PUBLIC_KEY_CONTENT]` with the full public key line from step 1 or 2.
+
+   **Why not `ssh-copy-id`?** It's not available on Windows. This manual method works on all platforms.
+
+4. **Verify passwordless connection:**
+   ```bash
+   ssh -o BatchMode=yes -p [port] [user]@[host] "echo 'Passwordless SSH is working!'"
+   ```
+   If successful, it connects without asking for a password.
 
 ### Important Notes:
 - One key works for ALL servers - just add the same public key to each server
 - The private key NEVER leaves your machine
 - If they already set up a key for another project on the same server, it will already work
+- On Windows, always use the manual push method (step 3) since `ssh-copy-id` is not available
 
 ---
 
