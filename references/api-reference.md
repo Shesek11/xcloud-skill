@@ -20,7 +20,7 @@ Token is loaded from `~/.xcloud/token` (preferred) or `$XCLOUD_API_TOKEN`. See `
 # Load token: prefer env var, then file. Strip any trailing newline.
 XCLOUD_TOKEN="${XCLOUD_API_TOKEN:-$(test -f ~/.xcloud/token && tr -d '\r\n' < ~/.xcloud/token)}"
 if [ -z "$XCLOUD_TOKEN" ]; then
-  echo "ERROR: No xCloud API token found. See references/token-setup.md"
+  echo "ERROR: No xCloud API token found. See plugins/xcloud/references/token-setup.md"
   exit 1
 fi
 XCLOUD_BASE="https://app.xcloud.host/api/v1"

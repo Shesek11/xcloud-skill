@@ -1,6 +1,6 @@
 {
   "name": "xcloud",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Manage xCloud hosting via the Public API (v1.0.0, 111 ops) + SSH/git/MariaDB. Auto-discovers servers and sites; deploys, backups, cache; security scans, firewall/fail2ban, WordPress management, cron, PHP versions, SSL, PageSpeed, snapshots, staging; plus the usual git/SSH workflow.",
   "author": {
     "name": "Custom",

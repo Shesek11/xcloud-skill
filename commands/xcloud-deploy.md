@@ -9,7 +9,7 @@ description: Trigger a git deployment for an xCloud site via the API (without a 
 
 ## xCloud Deploy
 
-See `references/api-reference.md`. This complements `/xcloud-push`: use **`/xcloud-push`** to commit+push (webhook triggers deploy); use **`/xcloud-deploy`** to redeploy the *current* server branch without any new commit.
+See `plugins/xcloud/references/api-reference.md`. This complements `/xcloud-push`: use **`/xcloud-push`** to commit+push (webhook triggers deploy); use **`/xcloud-deploy`** to redeploy the *current* server branch without any new commit.
 
 ### Step 1: Resolve site UUID
 

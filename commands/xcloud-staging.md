@@ -9,7 +9,7 @@ description: List staging environments for an xCloud site. Use to see which stag
 
 ## xCloud Staging Sites
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve site UUID
 

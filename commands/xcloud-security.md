@@ -10,7 +10,7 @@ description: Security operations for an xCloud site/server — scan for vulnerab
 
 ## xCloud Security
 
-See `references/api-reference.md` for the auth helper and full endpoint list.
+See `plugins/xcloud/references/api-reference.md` for the auth helper and full endpoint list.
 
 ### Step 1: Resolve UUIDs
 

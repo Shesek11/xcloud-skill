@@ -5,6 +5,24 @@ All notable changes to the xCloud plugin are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-06-19
+
+Consolidated the xCloud skill into a single canonical home: **this repo**
+(`xcloud-skill`), restructured as a proper plugin and cloned to
+`~/.claude/plugins/xcloud/`. Folded in all accumulated xCloud knowledge.
+
+### Added
+- `KNOWLEDGE.md` — accumulated gotchas, the marketing-vs-reality API check, parameter enums, account snapshot, and a Node.js persistence summary.
+- `skills/xcloud-nodejs-persistence/` — PM2 reboot-persistence playbook, bundled into the repo.
+- `commands/xcloud-new-site.md` — guided WordPress / Node.js site creation (SSH), retained from the original skill.
+
+### Changed
+- Restructured into a clean plugin layout: `commands/`, `references/`, `skills/`, `.claude-plugin/plugin.json` (previously a flat command dump mixed with unrelated skills).
+- This repo is now the single source of truth, cloned to `~/.claude/plugins/xcloud/`; the duplicate copy formerly maintained under `claude-config` has been retired.
+
+### Removed
+- Non-xcloud commands (`gsd/`, `audit`, `critique`, `cybersec`, `extract`, `init`, `resume-session`, `security-review`, `status`) that were incidentally in this repo — they live elsewhere now.
+
 ## [2.0.0] - 2026-06-18
 
 Tracks the xCloud Public API graduating from beta to **v1.0.0**, which grew from

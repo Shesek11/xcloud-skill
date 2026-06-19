@@ -9,7 +9,7 @@ description: Manage PHP versions on an xCloud server — list installed/availabl
 
 ## xCloud PHP Versions
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve server UUID
 

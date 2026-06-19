@@ -10,7 +10,7 @@ description: Manage cron jobs for an xCloud site or server — list, create, upd
 
 ## xCloud Cron Jobs
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve UUIDs
 

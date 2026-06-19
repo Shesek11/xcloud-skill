@@ -9,7 +9,7 @@ description: View Google PageSpeed Insights scores for an xCloud site (mobile + 
 
 ## xCloud PageSpeed
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve site UUID
 

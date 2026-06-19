@@ -9,7 +9,7 @@ description: Manage SSL certificates for an xCloud site — view the active cert
 
 ## xCloud SSL Certificates
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve site UUID
 

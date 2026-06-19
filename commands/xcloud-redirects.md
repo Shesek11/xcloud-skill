@@ -9,7 +9,7 @@ description: Inspect an xCloud site's URL and access configuration — redirecti
 
 ## xCloud Redirects & Web Rules
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve site UUID
 

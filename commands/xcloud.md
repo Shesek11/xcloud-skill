@@ -7,7 +7,7 @@ description: Main entry point for xCloud project management. Shows current proje
 
 - Current directory: !`pwd`
 - xCloud context: !`test -f .xcloud/context.md && echo "Yes — initialized" || echo "No — run /xcloud-init first"`
-- Token file: !`test -f ~/.xcloud/token && echo "OK" || echo "MISSING — see references/token-setup.md"`
+- Token file: !`test -f ~/.xcloud/token && echo "OK" || echo "MISSING — see plugins/xcloud/references/token-setup.md"`
 - Git status: !`git status --short 2>/dev/null | head -5 || echo "Not a git repository"`
 
 ## xCloud Project Hub

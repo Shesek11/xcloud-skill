@@ -9,7 +9,7 @@ description: List backups for an xCloud site, trigger a new backup, or inspect b
 
 ## Site Backups
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve site UUID
 

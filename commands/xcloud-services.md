@@ -9,7 +9,7 @@ description: Inspect and control xCloud server services (nginx, mysql, php-fpm, 
 
 ## xCloud Server Services
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve server UUID
 

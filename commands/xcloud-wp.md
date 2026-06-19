@@ -10,7 +10,7 @@ description: Manage a WordPress site on xCloud via the API — list plugins/them
 
 ## xCloud WordPress Management
 
-See `references/api-reference.md` for the auth helper and bodies.
+See `plugins/xcloud/references/api-reference.md` for the auth helper and bodies.
 
 ### Step 1: Resolve site UUID + confirm it's WordPress
 

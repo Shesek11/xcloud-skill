@@ -2,7 +2,9 @@
 
 Manage xCloud hosting projects from Claude Code. Combines the **xCloud Public API** (auto-discovery, deploy verification, backups, monitoring, security scanning, WordPress management, and more) with **SSH / git / MariaDB** for everything the API doesn't cover.
 
-> The xCloud Public API is now **v1.0.0** (out of beta) with **111 operations** across 11 categories. The plugin tracks the live spec snapshot in `references/openapi.yaml` (captured 2026-06-18) and pins to documented response fields where possible. See `CHANGELOG.md` for what changed.
+> The xCloud Public API is now **v1.0.0** (out of beta) with **111 operations** across 11 categories. The plugin tracks the live spec snapshot in `references/openapi.yaml` and pins to documented response fields where possible. See `CHANGELOG.md` for what changed.
+
+**Canonical home:** this repo (`xcloud-skill`) is the single source of truth — it is cloned to `~/.claude/plugins/xcloud/` and loads as the live plugin. It also bundles xCloud skills under `skills/` and accumulated know-how in `KNOWLEDGE.md`. Edit here, push here.
 
 ---
 
@@ -49,6 +51,7 @@ Manage xCloud hosting projects from Claude Code. Combines the **xCloud Public AP
 | Command | Purpose |
 |---------|---------|
 | `/xcloud-init` | Initialize a project — auto-discovers everything via API |
+| `/xcloud-new-site` | Guided WordPress / Node.js site creation (SSH-based) |
 | `/xcloud-ssh` | Interactive shell, run commands, view logs, restart services |
 | `/xcloud-db` | MariaDB queries via direct or tunneled connection |
 | `/xcloud-pull` | git pull with conflict / stash handling |
@@ -219,6 +222,7 @@ xcloud/
 ├── commands/
 │   ├── xcloud.md            # hub
 │   ├── xcloud-init.md       # API-driven init + migration
+│   ├── xcloud-new-site.md   # guided WordPress / Node.js site creation (SSH)
 │   ├── xcloud-list.md
 │   ├── xcloud-info.md
 │   ├── xcloud-status.md     # enriched with API
@@ -243,11 +247,14 @@ xcloud/
 │   ├── xcloud-db.md         # mysql via tunnel
 │   ├── xcloud-pull.md
 │   └── xcloud-push.md       # verifies deploy via API
-└── references/
-    ├── token-setup.md
-    ├── api-reference.md     # canonical 111-op catalog
-    ├── openapi.yaml         # full spec snapshot (v1.0.0)
-    └── ssh-key-setup.md
+├── references/
+│   ├── token-setup.md
+│   ├── api-reference.md     # canonical 111-op catalog
+│   ├── openapi.yaml         # full spec snapshot (v1.0.0)
+│   └── ssh-key-setup.md
+├── skills/
+│   └── xcloud-nodejs-persistence/   # PM2 reboot-persistence playbook
+└── KNOWLEDGE.md             # accumulated gotchas, reality-check, account notes
 ```
 
 ---

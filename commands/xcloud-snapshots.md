@@ -10,7 +10,7 @@ description: List site snapshots on xCloud — for a single site or for every si
 
 ## xCloud Snapshots
 
-See `references/api-reference.md` for the auth helper.
+See `plugins/xcloud/references/api-reference.md` for the auth helper.
 
 ### Step 1: Resolve UUIDs
 
