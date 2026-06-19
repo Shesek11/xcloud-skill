@@ -1,6 +1,6 @@
 ---
-allowed-tools: Bash(git:*), Read, Write, Glob
-description: Pull latest changes from GitHub repository
+allowed-tools: Bash(git:*), Read, Write, Glob, AskUserQuestion
+description: Pull latest changes from GitHub repository. Handles uncommitted changes, merge conflicts, and dependency updates.
 ---
 
 ## Context
@@ -10,13 +10,10 @@ description: Pull latest changes from GitHub repository
 - Current branch: !`git branch --show-current 2>/dev/null`
 - Remote info: !`git remote -v 2>/dev/null | head -2`
 
-## Your Task: Pull Latest from GitHub
-
-Sync local repository with remote GitHub repository.
+## Pull Latest from GitHub
 
 ### Step 1: Verify Git Repository
 
-Check if current directory is within the project:
 1. Verify `.git` folder exists (current or parent)
 2. Locate `.xcloud/context.md` for project info
 3. If not in a git repo, inform user
@@ -39,7 +36,6 @@ If there are uncommitted changes, use AskUserQuestion:
 ### Step 4: Execute Pull
 
 ```bash
-git fetch origin
 git pull origin [branch]
 ```
 
